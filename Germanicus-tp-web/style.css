@@ -1,0 +1,187 @@
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border: 1px solid #444;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.7);
+    
+    /* LIGNES AJOUTÉES POUR LA 3D */
+    position: relative; 
+    perspective: 2000px; 
+}
+
+h1 {
+    color: #d44e37; /* Rouge orangé */
+    text-align: center;
+}
+h2 {
+    color: #d4af37; /* Couleur or */
+    text-align: center;
+}
+
+
+h3 {
+    color: #a0a0a0;
+}
+
+p {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.choices {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn {
+    display: block;
+    text-align: center;
+    background-color: #e22e1642;
+    color: #d4af37;
+    text-decoration: none;
+    padding: 15px;
+    border: 1px solid #d4af37;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #d4af37;
+    color: #121212;
+}
+
+.bouton-retour img {
+    width: 50px; /* Ajustez la taille selon votre design */
+    height: auto;
+    cursor: pointer; /* Transforme la souris en petite main au survol */
+    transition: transform 0.2s ease; /* Rend l'animation fluide */
+}
+
+/* Effet au survol de la souris */
+.bouton-retour img:hover {
+    transform: scale(1.1); /* Agrandi légèrement l'image pour indiquer qu'elle est cliquable */
+}
+
+.icone-bas-droite {
+    position: fixed;
+    bottom: 20px;  /* Distance par rapport au bas de la page */
+    right: 20px;   /* Distance par rapport à la droite */
+    width: 50px;   /* Taille de l'icône (à ajuster) */
+    z-index: 1000; /* S'assure que l'icône reste au-dessus du texte */
+}
+
+
+/* --- ANIMATION D'OUVERTURE DE LIVRE --- */
+
+.page-couverture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    transform-style: preserve-3d;
+    transform-origin: left center; /* La charnière est à gauche */
+    animation: ouvrirPage 3s ease-in-out forwards; 
+    animation-delay: 1s; /* Le livre s'ouvre après 1 seconde */
+    border-radius: 8px;
+}
+
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Rend le dos invisible pendant la rotation */
+    border-radius: 8px;
+}
+
+/* Le devant de la couverture */
+.recto {
+    background-color: #121212; /* Assorti à ton fond principal */
+    border: 2px solid #d4af37; /* Bordure dorée */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: inset 10px 0 20px rgba(0,0,0,0.8);
+}
+
+.recto h1 {
+    font-size: 4em;
+    color: #d44e37; /* Ta couleur personnalisée pour les h1 */
+}
+
+/* L'intérieur de la couverture (dos) */
+.verso {
+    background-color: #0a0a0a;
+    border: 1px solid #444;
+    transform: rotateY(180deg);
+}
+
+/* Animation et disparition de la couverture à la fin */
+@keyframes ouvrirPage {
+    0% { 
+        transform: rotateY(0deg); 
+    }
+    99% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% { 
+        transform: rotateY(-130deg); 
+        opacity: 0; 
+        visibility: hidden; /* Permet de cliquer sur les boutons en dessous une fois ouvert */
+    }
+}
+
+/* --- AJOUTS : liens de référence, icônes, accessibilité, mobile --- */
+
+.liens-references {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.liens-references img {
+    width: 150px;
+    max-width: 100%;
+    height: auto;
+}
+
+.btn .icone {
+    margin-right: 0.4em;
+}
+
+.btn:focus-visible,
+.bouton-retour:focus-visible {
+    outline: 3px solid #d4af37;
+    outline-offset: 3px;
+}
+
+img {
+    max-width: 100%;
+}
+
+@media (max-width: 600px) {
+    .container {
+        margin: 20px 10px;
+    }
+    .recto h1 {
+        font-size: 2.2em;
+    }
+}

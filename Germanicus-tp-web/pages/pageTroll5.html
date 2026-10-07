@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise ! - Les Pages du Destin</title>
+    <link rel="stylesheet" href="../troll.css">
+</head>
+<body>
+    <div id="video-container">
+        <video id="troll-video" src="../assets/zhang.mp4" autoplay loop muted playsinline>
+            Ton navigateur ne peut pas lire cette vidéo.
+        </video>
+
+        <a href="../index.html" class="btn-accueil">↩ Retour à l'accueil</a>
+        <button id="unmute-btn" type="button" onclick="activerSon()">Activer le son 🔊</button>
+    </div>
+
+    <script>
+        // Active le son : les navigateurs exigent un clic de l'utilisateur
+        function activerSon() {
+            var video = document.getElementById('troll-video');
+            video.muted = false;
+            video.play();
+            document.getElementById('unmute-btn').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
